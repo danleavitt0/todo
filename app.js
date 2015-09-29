@@ -47,7 +47,7 @@ function render (props, setState) {
             <Todo key={todoKey(i)} text={todo.text} {...app.todos[i]} />
           )
         }
-      </ul>
+      </ul> 
     </div>
   )
 }

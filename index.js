@@ -23,6 +23,5 @@ const store = createStore({
 
 store.dispatch(handleOnce('domready', () => {
   listen(store.dispatch)
-  console.log(document.getElementByClass('todoApp')[0])
-  vdux(store, state => <App {...state} key='app' />, document.getElementByClass('todoApp')[0])
+  vdux(store, state => <App {...state} key='app' />, document.getElementById('todoapp'))
 }))

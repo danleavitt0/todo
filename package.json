@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "start": "budo index.js --live -t babelify | garnish"
+    "start": "budo index.js --live -t babelify -d public | garnish"
   },
   "dependencies": {
     "babelify": "^6.3.0",
