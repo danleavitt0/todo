@@ -40,14 +40,20 @@ function render (props, setState) {
 
   return (
     <div>
-      <input className='new-todo' placeholder='What needs to be done?' type='text' ev-keyup={e => handleKeyup(setState, e)} value={app.text} />
-      <ul className='todo-list'>
-        {
-          todos.map((todo, i) =>
-            <Todo key={todoKey(i)} text={todo.text} {...app.todos[i]} />
-          )
-        }
-      </ul> 
+      <header className='header'>
+        <h1>Todos</h1>
+        <input className='new-todo' placeholder='What needs to be done?' type='text' ev-keyup={e => handleKeyup(setState, e)} value={app.text} />
+      </header>
+      <section className='main'>
+        <input className='toggle-all' type='checkbox'/>
+        <ul className='todo-list'>
+          {
+            todos.map((todo, i) =>
+              <Todo key={todoKey(i)} text={todo.text} {...app.todos[i]} />
+            )
+          }
+        </ul>
+      </section>
     </div>
   )
 }
