@@ -3,7 +3,6 @@
  */
 
 import vdux from 'vdux'
-import app from './app'
 import createStore from './store'
 import {listen} from 'virtual-component'
 import {handleOnce} from 'declarative-events'
@@ -24,5 +23,6 @@ const store = createStore({
 
 store.dispatch(handleOnce('domready', () => {
   listen(store.dispatch)
-  vdux(store, state => <App {...state} key='app' />, document.body)
+  console.log(document.getElementByClass('todoApp')[0])
+  vdux(store, state => <App {...state} key='app' />, document.getElementByClass('todoApp')[0])
 }))

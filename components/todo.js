@@ -15,15 +15,9 @@ function render (props) {
 
   return (
     <li>
-      <span>{props.text}</span>
-      <span ev-click={e => Dropdown.toggle(dropdownKey)} style={{marginLeft: '12px', color: 'blue'}} >
-        options
-      </span>
-      <Dropdown {...props.dropdown} key={dropdownKey}>
-        <div>Item 1</div>
-        <div>Item 2</div>
-        <div>Item 3</div>
-      </Dropdown>
+      <input className='toggle' type='checkbox'/>
+      <label>{props.text}</label>
+      <button>x</button>
     </li>
   )
 }

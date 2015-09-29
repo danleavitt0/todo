@@ -40,8 +40,8 @@ function render (props, setState) {
 
   return (
     <div>
-      <input type='text' ev-keyup={e => handleKeyup(setState, e)} value={app.text} />
-      <ul>
+      <input className='new-todo' placeholder='What needs to be done?' type='text' ev-keyup={e => handleKeyup(setState, e)} value={app.text} />
+      <ul className='todo-list'>
         {
           todos.map((todo, i) =>
             <Todo key={todoKey(i)} text={todo.text} {...app.todos[i]} />
