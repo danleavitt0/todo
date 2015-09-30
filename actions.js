@@ -5,6 +5,8 @@
 const TODO_ADD = 'TODO_ADD'
 const TODO_REMOVE = 'TODO_REMOVE'
 const TODO_SET_IMPORTANT = 'TODO_STAR'
+const TOGGLE = 'TOGGLE'
+const TOGGLE_ALL = 'TOGGLE_ALL'
 
 /**
  * Action creators
@@ -31,6 +33,19 @@ function markTodoImportant (idx) {
   }
 }
 
+function toggle (idx) {
+  return {
+    type: TOGGLE,
+    idx
+  }
+}
+
+function toggleAll () {
+  return {
+    type: TOGGLE_ALL
+  }
+}
+
 /**
  * Exports
  */
@@ -40,9 +55,13 @@ export default {
   addTodo,
   removeTodo,
   markTodoImportant,
+  toggleAll,
+  toggle,
 
   // Action types
   TODO_ADD,
   TODO_REMOVE,
-  TODO_SET_IMPORTANT
+  TODO_SET_IMPORTANT,
+  TOGGLE_ALL,
+  TOGGLE
 }

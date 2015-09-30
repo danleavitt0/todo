@@ -3,7 +3,7 @@
  */
 
 import element from 'vdom-element'
-import {addTodo, removeTodo, markTodoImportant} from './actions'
+import {addTodo, removeTodo, markTodoImportant, toggleAll} from './actions'
 import localize from 'vdux-local'
 import Todo from './components/todo'
 
@@ -37,7 +37,6 @@ function handleKeyup (setState, e) {
 function render (props, setState) {
   const {app = {}, todos, key} = props
   const todoKey = idx => key + '.todos.' + idx
-
   return (
     <div>
       <header className='header'>
@@ -45,11 +44,11 @@ function render (props, setState) {
         <input className='new-todo' placeholder='What needs to be done?' type='text' ev-keyup={e => handleKeyup(setState, e)} value={app.text} />
       </header>
       <section className='main'>
-        <input className='toggle-all' type='checkbox'/>
+        <input ev-click={e => toggleAll()} className='toggle-all' type='checkbox'/>
         <ul className='todo-list'>
           {
             todos.map((todo, i) =>
-              <Todo key={todoKey(i)} text={todo.text} {...app.todos[i]} />
+              <Todo key={todoKey(i)} text={todo.text} completed={todo.completed} {...app.todos[i]} />
             )
           }
         </ul>

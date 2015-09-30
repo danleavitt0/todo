@@ -14,7 +14,8 @@ import App from './app'
  */
 
 const store = createStore({
-  todos: []
+  todos: [],
+  toggleAll: true
 })
 
 /**

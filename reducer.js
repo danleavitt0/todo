@@ -2,7 +2,7 @@
  * Imports
  */
 
-import {TODO_ADD, TODO_REMOVE, TODO_SET_IMPORTANT} from './actions'
+import {TODO_ADD, TODO_REMOVE, TODO_SET_IMPORTANT, TOGGLE_ALL, TOGGLE} from './actions'
 import ephemeral from 'redux-ephemeral'
 
 /**
@@ -31,6 +31,24 @@ function reducer (state, action) {
                 ? {...todo, important: true}
                 : todo, [])
           )
+      }
+    case TOGGLE:
+      return {
+        ...state,
+        todos: state.todos.map((todo, idx) => {
+          if (idx === action.idx)
+            todo.completed = !todo.completed
+          return todo
+        })
+      }
+    case TOGGLE_ALL:
+      return {
+        ...state,
+        todos: state.todos.map((todo) => {
+          todo.completed = state.toggleAll
+          return todo
+        }),
+        toggleAll: !state.toggleAll
       }
   }
 
