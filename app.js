@@ -14,7 +14,8 @@ import Todo from './components/todo'
 function initialState () {
   return {
     todos: [],
-    text: ''
+    completed: [],
+    inProgress: []
   }
 }
 
