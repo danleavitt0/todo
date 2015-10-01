@@ -14,9 +14,7 @@ import App from './app'
  */
 
 const store = createStore({
-  todos: [],
-  completed: [],
-  inProgress: []
+  todos: []
 })
 
 /**

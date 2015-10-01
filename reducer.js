@@ -12,11 +12,9 @@ import ephemeral from 'redux-ephemeral'
 function reducer (state, action) {
   switch (action.type) {
     case TODO_ADD:
-      const inProgress = [...state.inProgress, {text: action.text, important: false}]
       return {
         ...state,
-        inProgress: inProgress,
-        todos: [...inProgress, ...state.completed]
+        todos: [...state.todos, {text: action.text, important: false}]
       }
     case TODO_REMOVE:
       return {
@@ -35,18 +33,28 @@ function reducer (state, action) {
           )
       }
     case TOGGLE:
+      let todos = state.todos.map((todo, idx) => {
+        if (idx === action.idx)
+          todo.completed = !todo.completed
+        return todo
+      })
+      var count = todos.length
+      var completed = state.todos.filter((todo) => todo.completed).length
       return {
         ...state,
-        completed: [...state.completed, state.todos[action.idx]]
+        todos: todos,
+        allDone: count === completed
       }
     case TOGGLE_ALL:
+      var count = state.todos.length
+      var completed = state.todos.filter((todo) => todo.completed).length
       return {
         ...state,
-        todos: state.todos.map((todo) => {
-          todo.completed = state.toggleAll
+        allDone: count !== completed,
+        todos:state.todos.map((todo) => {
+          todo.completed = count !== completed
           return todo
-        }),
-        toggleAll: !state.toggleAll
+        })
       }
   }
 

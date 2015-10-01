@@ -6,6 +6,7 @@ import element from 'vdom-element'
 import {addTodo, removeTodo, markTodoImportant, toggleAll} from './actions'
 import localize from 'vdux-local'
 import Todo from './components/todo'
+import Footer from './components/footer'
 
 /**
  * initialState
@@ -13,9 +14,7 @@ import Todo from './components/todo'
 
 function initialState () {
   return {
-    todos: [],
-    completed: [],
-    inProgress: []
+    todos: []
   }
 }
 
@@ -38,6 +37,10 @@ function handleKeyup (setState, e) {
 function render (props, setState) {
   const {app = {}, todos, key} = props
   const todoKey = idx => key + '.todos.' + idx
+  const footer = props.todos.length > 0 ? <Footer todos={todos} key={1}/> : null
+  const checkAll = props.todos.length > 0 ?
+    <input ev-click={e => toggleAll()} className='toggle-all' type='checkbox' checked={props.allDone}/> :
+    null
   return (
     <div>
       <header className='header'>
@@ -45,7 +48,7 @@ function render (props, setState) {
         <input className='new-todo' placeholder='What needs to be done?' type='text' ev-keyup={e => handleKeyup(setState, e)} value={app.text} />
       </header>
       <section className='main'>
-        <input ev-click={e => toggleAll()} className='toggle-all' type='checkbox'/>
+        {checkAll}
         <ul className='todo-list'>
           {
             todos.map((todo, i) =>
@@ -54,6 +57,7 @@ function render (props, setState) {
           }
         </ul>
       </section>
+      {footer}
     </div>
   )
 }

@@ -4,7 +4,7 @@
 
 import localize from 'vdux-local'
 import element from 'vdom-element'
-import {toggle} from '../actions'
+import {toggle, removeTodo} from '../actions'
 
 function render (props) {
   const key = props.key
@@ -14,7 +14,7 @@ function render (props) {
     <li className={className} key={key}>
       <input ev-click={e => toggle(idx)} className='toggle' type='checkbox' checked={props.completed}/>
       <label>{props.text}</label>
-      <button className='destroy'/>
+      <button ev-click={e => removeTodo(idx)} className='destroy'/>
     </li>
   )
 }
