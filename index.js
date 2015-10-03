@@ -14,7 +14,8 @@ import App from './app'
  */
 
 const store = createStore({
-  todos: []
+  todos: [],
+  url: '/'
 })
 
 /**
@@ -23,5 +24,5 @@ const store = createStore({
 
 store.dispatch(handleOnce('domready', () => {
   listen(store.dispatch)
-  vdux(store, state => <App {...state} key='app' />, document.getElementById('todoapp'))
+  vdux(store, state => <App {...state} url={state.url} key='router' />, document.getElementById('todoapp'))
 }))

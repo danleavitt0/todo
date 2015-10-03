@@ -1,7 +1,15 @@
+/**
+ * Imports
+ */
+
 import localize, {localAction} from 'vdux-local'
 import {handleOnce, unhandle} from 'declarative-events'
 import bind from 'bind-effect'
 import element from 'vdom-element'
+
+/**
+ * Action types
+ */
 
 const TOGGLE = 'TOGGLE_DROPDOWN'
 

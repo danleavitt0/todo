@@ -7,6 +7,7 @@ const TODO_REMOVE = 'TODO_REMOVE'
 const TODO_SET_IMPORTANT = 'TODO_STAR'
 const TOGGLE = 'TOGGLE'
 const TOGGLE_ALL = 'TOGGLE_ALL'
+const CHANGE_URL = 'CHANGE_URL'
 
 /**
  * Action creators
@@ -46,6 +47,13 @@ function toggleAll () {
   }
 }
 
+function changeUrl (url) {
+  return {
+    type: CHANGE_URL,
+    url
+  }
+}
+
 /**
  * Exports
  */
@@ -57,11 +65,13 @@ export default {
   markTodoImportant,
   toggleAll,
   toggle,
+  changeUrl,
 
   // Action types
   TODO_ADD,
   TODO_REMOVE,
   TODO_SET_IMPORTANT,
   TOGGLE_ALL,
-  TOGGLE
+  TOGGLE,
+  CHANGE_URL
 }

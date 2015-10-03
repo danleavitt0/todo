@@ -2,7 +2,7 @@
  * Imports
  */
 
-import {TODO_ADD, TODO_REMOVE, TODO_SET_IMPORTANT, TOGGLE_ALL, TOGGLE} from './actions'
+import {TODO_ADD, TODO_REMOVE, TODO_SET_IMPORTANT, TOGGLE_ALL, TOGGLE, CHANGE_URL} from './actions'
 import ephemeral from 'redux-ephemeral'
 
 /**
@@ -55,6 +55,11 @@ function reducer (state, action) {
           todo.completed = count !== completed
           return todo
         })
+      }
+    case CHANGE_URL:
+      return {
+        ...state,
+        url: action.url
       }
   }
 
