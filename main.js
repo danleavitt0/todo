@@ -41,6 +41,7 @@ function sortTodos (todos) {
  */
 
 function render (props, setState) {
+  console.log(props)
   const {todos, key, params} = props
   const app = props[key] || {}
   const todoKey = idx => key + '.todos.' + idx

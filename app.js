@@ -2,31 +2,20 @@ import Main from './main'
 import Footer from './components/footer'
 import element from 'vdom-element'
 import localize from 'vdux-local'
+import router from './router'
 
-const routes = {
-  '/': {
-    key: 'main',
-    elem: Main,
-    params: []
-  },
-  '/:active': {
-    key: 'main',
-    elem: Main,
-    params: {'Active': true}
-  },
-  '/:completed': {
-    key: 'main',
-    elem: Main,
-    params: {'Completed': true}
-  }
-}
+var component = router({
+  '/': Main,
+  '/:slug': Footer
+})
 
 function render (props) {
-  const {key, elem, params} = routes[props.url] || Main
-  const buildRoute = element(elem, {...props, params: params, key: key})
+  let {params} = component(props.url)
+  console.log(params)
+  const buildRoute = element(component(props.url), {...props, params: {...params}, key: '/'})
   return (
     <div>
-      {buildRoute}
+      <Main key='main' params={params} {...props}/>
     </div>
   )
 }
